@@ -20,7 +20,7 @@ getFeed = (feed) ->
       i = 0
       while i < result.feed.entries.length
         entry = result.feed.entries[i]
-        $div = $ '<div></div>'
+        $div = $ '<div class="item"></div>'
         $div.append entry.title
         $container.append $div
         i++

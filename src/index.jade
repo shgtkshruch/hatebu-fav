@@ -11,12 +11,17 @@ html(lang="ja")
     meta(content='telephone=no', name='format-detection')
     // build:css styles/vendor.css
     // bower:css
+    link(rel='stylesheet', href='../bower_components/normalize-css/normalize.css')
     // endbower
     // endbuild
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
-    #feed
-    #next next
+    header.l-header.header
+      h1.header__logo HBR
+        span.header__caption Hanena Bookmark Reader
+    main.l-main
+      #feed
+      #next next
 
     script(src='https://www.google.com/jsapi')
 

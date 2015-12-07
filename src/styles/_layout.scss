@@ -1,0 +1,17 @@
+$width-header: 300px;
+
+.l {
+  &-header {
+    position: fixed;
+    background-color: $color-blue;
+    height: 100vh;
+    width: $width-header;;
+  }
+  &-main {
+    $padding: 50px;
+    width: 960px;
+    padding-top: $padding;
+    padding-left: $padding;
+    margin-left: $width-header;
+  }
+}
