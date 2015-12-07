@@ -35,7 +35,7 @@ html(lang="ja")
             span.item__time <%= time %>
           h2.item__title
             img.item__favicon(src!="<%= favicon %>")
-            <%= title %>
+            a.item__link(href!="<%= link %>" target="_blank") <%= title %>
 
     script(src='https://www.google.com/jsapi')
 

@@ -26,4 +26,11 @@ $width-img: 64px;
     font-size: 18px;
     font-weight: normal;
   }
+  &__link {
+    color: #000;
+    transition: .3s color;
+    &:hover {
+      color: $color-blue;
+    }
+  }
 }
