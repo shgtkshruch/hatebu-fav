@@ -1,3 +1,26 @@
+$width-img: 64px;
+
 .item {
   margin-bottom: 30px;
+  margin-left: $width-img;
+  &__authorImg {
+    float: left;
+    margin-left: $width-img * -1;
+    border-radius: 50%;
+  }
+  &__body {
+    float: left;
+    margin-left: 15px;
+  }
+  &__author {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  &__favicon {
+    margin-right: 5px;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: normal;
+  }
 }

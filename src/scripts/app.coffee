@@ -1,3 +1,5 @@
+url = require 'url'
+
 bookmarkNum = 0
 username = ''
 
@@ -15,9 +17,19 @@ getFeed = (feed) ->
       i = 0
       while i < result.feed.entries.length
         entry = result.feed.entries[i]
-        $div = $ '<div class="item"></div>'
-        $div.append entry.title
-        $container.append $div
+
+        console.log entry
+
+        compiled = _.template $('#item').text()
+        item =
+          author: entry.author
+          authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
+          title: entry.title
+          link: entry.link
+          favicon: 'http://www.google.com/s2/favicons?domain=' + url.parse(entry.link).host
+          text: entry.contentSnippet
+        $container.append compiled item
+
         i++
 
 $ '#next'
