@@ -85,6 +85,7 @@ gulp.task 'coffee', ->
     .bundle()
     .on 'error', (err) ->
       console.log 'Error : ' + err.message
+      this.emit 'end'
     .pipe source 'app.js'
     .pipe gulp.dest config.dest + '/scripts/'
     .pipe browserSync.reload
