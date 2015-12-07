@@ -33,6 +33,7 @@ html(lang="ja")
           .item__header
             strong.item__author <%= author %>
             span.item__time <%= time %>
+            span.item__count <%= bookmarkCount %>user
           h2.item__title
             img.item__favicon(src!="<%= favicon %>")
             a.item__link(href!="<%= link %>" target="_blank") <%= title %>

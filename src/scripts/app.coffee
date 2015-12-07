@@ -1,4 +1,6 @@
 url = require 'url'
+async = require 'async'
+
 moment = require 'moment'
 
 moment.locale 'jp',
@@ -16,6 +18,7 @@ bookmarkNum = 0
 username = ''
 
 $container = $ '#feed'
+template = _.template $('#item').text()
 
 google.load 'feeds', '1'
 
@@ -26,24 +29,31 @@ getFeed = (feed) ->
   feed.setNumEntries 25
   feed.load (result) ->
     if !result.error
-      i = 0
-      while i < result.feed.entries.length
-        entry = result.feed.entries[i]
-
-        console.log entry
-
-        compiled = _.template $('#item').text()
-        item =
-          author: entry.author
-          authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
-          title: entry.title
-          link: entry.link
-          favicon: 'http://www.google.com/s2/favicons?domain=' + url.parse(entry.link).host
-          time: moment(entry.publishedDate).fromNow()
-          text: entry.contentSnippet
-        $container.append compiled item
-
-        i++
+      async.each result.feed.entries, (entry, cb1) ->
+        async.waterfall [
+          (cb) ->
+            $.ajax
+              url: 'http://api.b.st-hatena.com/entry.count?url=' + entry.link
+              dataType: 'jsonp'
+              success: (bookmarkCount, status, xhr) ->
+                cb null, bookmarkCount
+          , (bookmarkCount, cb) ->
+              item =
+                author: entry.author
+                authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
+                title: entry.title
+                link: entry.link
+                favicon: 'http://www.google.com/s2/favicons?domain=' + url.parse(entry.link).host
+                time: moment(entry.publishedDate).fromNow()
+                text: entry.contentSnippet
+                bookmarkCount: bookmarkCount
+              $container.append template item
+              cb null
+        ], (err, results) ->
+          console.log err if err
+          cb1()
+      , (err) ->
+        console.log err if err
 
 $ '#next'
   .click (e) ->
