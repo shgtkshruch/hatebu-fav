@@ -1,4 +1,16 @@
 url = require 'url'
+moment = require 'moment'
+
+moment.locale 'jp',
+  relativeTime:
+    past: '%s'
+    s: '秒'
+    m: '1分'
+    mm: '%d分'
+    h: '1時間'
+    hh: '%d時間'
+    d: '昨日'
+    dd: '%d日'
 
 bookmarkNum = 0
 username = ''
@@ -27,6 +39,7 @@ getFeed = (feed) ->
           title: entry.title
           link: entry.link
           favicon: 'http://www.google.com/s2/favicons?domain=' + url.parse(entry.link).host
+          time: moment(entry.publishedDate).fromNow()
           text: entry.contentSnippet
         $container.append compiled item
 

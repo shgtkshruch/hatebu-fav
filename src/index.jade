@@ -30,7 +30,9 @@ html(lang="ja")
       .item.clearfix
         img.item__authorImg(src!="<%= authorImg %>")
         .item__body
-          h2.item__author <%= author %>
+          .item__header
+            strong.item__author <%= author %>
+            span.item__time <%= time %>
           h2.item__title
             img.item__favicon(src!="<%= favicon %>")
             <%= title %>
