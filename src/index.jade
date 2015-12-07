@@ -19,6 +19,9 @@ html(lang="ja")
     header.l-header.header
       h1.header__logo HBR
         span.header__caption Hanena Bookmark Reader
+      form.header__form.form
+        input#username.form__input(type="text" name="username" placeholder="ユーザー名")
+        input#submit.form__submit(type="submit" value="決定")
     main.l-main
       #feed
       #next next

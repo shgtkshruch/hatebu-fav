@@ -1,0 +1,25 @@
+.form {
+  font-size: 0;
+  &__input {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 60%;
+    height: 36px;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    text-align: center;
+  }
+  &__submit {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 20%;
+    height: 36px;
+    background-color: #fff;
+    border: none;
+    font-size: 16px;
+    color: #666;
+  }
+}
