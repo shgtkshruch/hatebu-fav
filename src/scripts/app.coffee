@@ -44,7 +44,7 @@ getFeed = (feed) ->
                 title: entry.title
                 link: entry.link
                 favicon: 'http://www.google.com/s2/favicons?domain=' + entry.link
-                time: moment(entry.publishedDate).fromNow()
+                time: moment(new Date(entry.publishedDate)).fromNow()
                 text: entry.contentSnippet
                 bookmarkCount: bookmarkCount
               $container.append itemTemplate item
@@ -67,6 +67,7 @@ $ '#submit'
     e.preventDefault()
 
     $container.empty()
+    $comment.empty()
 
     bookmarkNum = 0
     username = $('#username').val()
@@ -92,7 +93,7 @@ $container
           item =
             author: bookmark.user
             text: bookmark.comment
-            date: moment(bookmark.timestamp).fromNow()
+            date: moment(new Date(bookmark.timestamp)).fromNow()
             icon: 'http://cdn1.www.st-hatena.com/users/st/' + bookmark.user + '/profile.gif'
 
           $comment.append commentTemplate item
