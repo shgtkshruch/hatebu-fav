@@ -1,8 +1,25 @@
 $width-img: 64px;
 
 .item {
-  margin-bottom: 30px;
-  margin-left: $width-img;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  &__inner {
+    margin-left: $width-img;
+  }
   &__authorImg {
     float: left;
     margin-left: $width-img * -1;

@@ -12,6 +12,7 @@ moment.locale 'jp',
     hh: '%d時間'
     d: '昨日'
     dd: '%d日'
+steady = require 'steady'
 
 bookmarkNum = 0
 username = ''
@@ -57,13 +58,6 @@ getFeed = (feed) ->
       , (err) ->
         console.log err if err
 
-$ '#next'
-  .click (e) ->
-    bookmarkNum += 25
-    api = getApi bookmarkNum
-    feed = new google.feeds.Feed api
-    getFeed feed
-
 $ '#submit'
   .click (e) ->
     e.preventDefault()
@@ -105,3 +99,14 @@ $container
             top: offset
           if $comment.children().length is 0
             $comment.append 'コメントがありませんでした。'
+
+new steady
+  conditions:
+    'max-bottom': 500
+  throttle: 200
+  handler: (values, done) ->
+      bookmarkNum += 25
+      api = getApi bookmarkNum
+      feed = new google.feeds.Feed api
+      getFeed feed
+      done()

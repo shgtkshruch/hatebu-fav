@@ -13,15 +13,13 @@ $width-header: 300px;
     width: 700px;
     padding-top: $padding;
     padding-left: $padding;
-    margin-right: 100px;
+    margin-right: 50px;
     margin-left: $width-header;
   }
   &-comment {
     position: relative;
-    width: 14px * 30;
+    width: 400px;
     max-height: 60vh;
-    padding-left: 15px;
-    border-left: 5px solid #ddd;
     overflow-y: scroll;
   }
 }
