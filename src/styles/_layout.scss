@@ -22,4 +22,9 @@ $width-header: 300px;
     max-height: 60vh;
     overflow-y: scroll;
   }
+  &-githubCorner {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 }
