@@ -1,3 +1,5 @@
+$ = require 'jquery'
+_ = require 'underscore'
 async = require 'async'
 moment = require 'moment'
 moment.locale 'jp',
