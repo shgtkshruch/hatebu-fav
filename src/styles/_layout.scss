@@ -19,7 +19,9 @@ $width-header: 300px;
   &-comment {
     position: relative;
     width: 14px * 30;
-    height: 60vh;
+    max-height: 60vh;
+    padding-left: 15px;
+    border-left: 5px solid #ddd;
     overflow-y: scroll;
   }
 }

@@ -1,8 +1,5 @@
-url = require 'url'
 async = require 'async'
-
 moment = require 'moment'
-
 moment.locale 'jp',
   relativeTime:
     past: '%s'
@@ -18,7 +15,10 @@ bookmarkNum = 0
 username = ''
 
 $container = $ '#feed'
-template = _.template $('#item-template').text()
+$comment = $ '#comment'
+
+itemTemplate = _.template $('#item-template').text()
+commentTemplate = _.template $('#comment-template').text()
 
 google.load 'feeds', '1'
 
@@ -43,11 +43,11 @@ getFeed = (feed) ->
                 authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
                 title: entry.title
                 link: entry.link
-                favicon: 'http://www.google.com/s2/favicons?domain=' + url.parse(entry.link).host
+                favicon: 'http://www.google.com/s2/favicons?domain=' + entry.link
                 time: moment(entry.publishedDate).fromNow()
                 text: entry.contentSnippet
                 bookmarkCount: bookmarkCount
-              $container.append template item
+              $container.append itemTemplate item
               cb null
         ], (err, results) ->
           console.log err if err
@@ -76,8 +76,6 @@ $ '#submit'
 
 $container
   .on 'click', '.js-bookmarkCount', (e) ->
-    $comment = $ '#comment'
-    template = _.template $('#comment-template').text()
     url = $(@).data 'url'
     offset = $(@).offset().top
     $.ajax
@@ -86,13 +84,21 @@ $container
       success: (bookmarkEntries, status, xhr) ->
         $comment.empty()
         async.each bookmarkEntries.bookmarks, (bookmark, cb) ->
+          # コメントが無いものは非表示
+          if bookmark.comment.length is 0
+            cb()
+            return
+
           item =
             author: bookmark.user
             text: bookmark.comment
             date: moment(bookmark.timestamp).fromNow()
             icon: 'http://cdn1.www.st-hatena.com/users/st/' + bookmark.user + '/profile.gif'
 
-          $comment.append template item
+          $comment.append commentTemplate item
+          cb()
+        , (err) ->
           $comment.css
             top: offset
-          cb()
+          if $comment.children().length is 0
+            $comment.append 'コメントがありませんでした。'
