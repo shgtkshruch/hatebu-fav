@@ -1,0 +1,25 @@
+.comment {
+  margin-bottom: 10px;
+  &__icon {
+    border-radius: 50%;
+    width: 30px;
+    height: auto;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  &__author {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+  &__date {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+  }
+  &__text {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}

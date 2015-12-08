@@ -18,7 +18,7 @@ bookmarkNum = 0
 username = ''
 
 $container = $ '#feed'
-template = _.template $('#item').text()
+template = _.template $('#item-template').text()
 
 google.load 'feeds', '1'
 
@@ -73,3 +73,26 @@ $ '#submit'
     api = getApi bookmarkNum
     feed = new google.feeds.Feed api
     getFeed feed
+
+$container
+  .on 'click', '.js-bookmarkCount', (e) ->
+    $comment = $ '#comment'
+    template = _.template $('#comment-template').text()
+    url = $(@).data 'url'
+    offset = $(@).offset().top
+    $.ajax
+      url: 'http://b.hatena.ne.jp/entry/json/?url=' + url
+      dataType: 'jsonp'
+      success: (bookmarkEntries, status, xhr) ->
+        $comment.empty()
+        async.each bookmarkEntries.bookmarks, (bookmark, cb) ->
+          item =
+            author: bookmark.user
+            text: bookmark.comment
+            date: moment(bookmark.timestamp).fromNow()
+            icon: 'http://cdn1.www.st-hatena.com/users/st/' + bookmark.user + '/profile.gif'
+
+          $comment.append template item
+          $comment.css
+            top: offset
+          cb()

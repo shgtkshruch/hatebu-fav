@@ -9,9 +9,17 @@ $width-header: 300px;
   }
   &-main {
     $padding: 50px;
+    float: left;
     width: 700px;
     padding-top: $padding;
     padding-left: $padding;
+    margin-right: 100px;
     margin-left: $width-header;
+  }
+  &-comment {
+    position: relative;
+    width: 14px * 30;
+    height: 60vh;
+    overflow-y: scroll;
   }
 }

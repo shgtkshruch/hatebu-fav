@@ -25,18 +25,27 @@ html(lang="ja")
     main.l-main
       #feed
       #next next
+    .l-comment#comment
 
-    script(type="text/template" id="item")
+    script(type="text/template" id="item-template")
       .item.clearfix
         img.item__authorImg(src!="<%= authorImg %>")
         .item__body
           .item__header
             strong.item__author <%= author %>
             span.item__time <%= time %>
-            span.item__count <%= bookmarkCount %>user
+            span.item__count.js-bookmarkCount(data-url!="<%= link %>") <%= bookmarkCount %>user
           h2.item__title
             img.item__favicon(src!="<%= favicon %>")
             a.item__link(href!="<%= link %>" target="_blank") <%= title %>
+
+    script(type="text/template" id="comment-template")
+      .comment
+        .comment__header
+          img.comment__icon(src!="<%= icon %>")
+          strong.comment__author <%= author %>
+          span.comment__date <%= date %>
+        p.comment__text <%= text %>
 
     script(src='https://www.google.com/jsapi')
 
