@@ -1,4 +1,5 @@
 $width-img: 64px;
+$height-count: 28px;
 
 .item {
   padding: 15px;
@@ -31,9 +32,11 @@ $width-img: 64px;
   }
   &__body {
     float: left;
+    width: 100%;
     margin-left: 15px;
   }
   &__header {
+    height: $height-count;
     margin-bottom: 5px;
   }
   &__author {
@@ -44,12 +47,44 @@ $width-img: 64px;
     margin-right: 10px;
   }
   &__count {
-    padding: 5px 10px;
-    font-size: 14px;
-    color: $color-red;
-    background-color: $color-pink;
+    box-sizing: border-box;
+    position: relative;
+    float: right;
+    height: $height-count;
+    padding-right: 10px;
+    padding-left: 25px;
+    margin-top: -3px;
+    margin-right: $height-count/2 * -1;
+    font-size: 18px;
+    font-family: Lato;
+    font-weight: bold;
+    line-height: $height-count;
+    color: #fff;
+    background-color: $color-blue;
     border-radius: 3px;
     cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: $height-count/2 solid transparent;
+      border-left: $height-count/2 solid #fff;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 0;
+      border: $height-count/4 solid transparent;
+      border-top: $height-count/4 solid $color-dark-blue;
+      border-left: $height-count/4 solid $color-dark-blue;
+    }
+  }
+  &__users {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: normal;
   }
   &__favicon {
     margin-right: 5px;

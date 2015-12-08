@@ -14,7 +14,7 @@ html(lang="ja")
     link(rel='stylesheet', href='../bower_components/normalize-css/normalize.css')
     // endbower
     // endbuild
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:100')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:100, 400')
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
     header.l-header.header
@@ -37,7 +37,9 @@ html(lang="ja")
             .item__header
               strong.item__author <%= author %>
               span.item__time <%= time %>
-              span.item__count.js-bookmarkCount(data-url!="<%= link %>") <%= bookmarkCount %>user
+              span.item__count.js-bookmarkCount(data-url!="<%= link %>")
+                <%= bookmarkCount %>
+                span.item__users users
             h2.item__title
               img.item__favicon(src!="<%= favicon %>")
               a.item__link(href!="<%= link %>" target="_blank") <%= title %>
