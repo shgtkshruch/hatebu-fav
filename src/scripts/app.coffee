@@ -12,6 +12,10 @@ moment.locale 'jp',
     hh: '%d時間'
     d: '昨日'
     dd: '%d日'
+    M: '1ヶ月'
+    MM: '%dヶ月'
+    y: '1年'
+    yy : '%d年'
 steady = require 'steady'
 
 bookmarkNum = 0
