@@ -74,7 +74,7 @@ $ '#submit'
 $container
   .on 'click', '.js-bookmarkCount', (e) ->
     url = $(@).data 'url'
-    offset = $(@).offset().top
+    offset = $(@).offset().top - 10
     $.ajax
       url: 'http://b.hatena.ne.jp/entry/json/?url=' + url
       dataType: 'jsonp'
