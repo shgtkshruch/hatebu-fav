@@ -68,7 +68,8 @@ $ '#submit'
 
     $container.empty()
 
+    bookmarkNum = 0
     username = $('#username').val()
-    api = getApi 0
+    api = getApi bookmarkNum
     feed = new google.feeds.Feed api
     getFeed feed
