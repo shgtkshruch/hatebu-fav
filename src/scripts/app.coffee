@@ -86,6 +86,13 @@ $container
       dataType: 'jsonp'
       success: (bookmarkEntries, status, xhr) ->
         $comment.empty()
+
+        if bookmarkEntries is null
+          $comment.css
+            top: offset
+          $comment.append '<p class="comment__nocomment">コメントがありませんでした。</p>'
+          return
+
         async.each bookmarkEntries.bookmarks, (bookmark, cb) ->
           # コメントが無いものは非表示
           if bookmark.comment.length is 0
