@@ -55,7 +55,6 @@ getFeed = (feed) ->
               link: entry.link
               favicon: 'http://www.google.com/s2/favicons?domain=' + entry.link
               time: moment(new Date(entry.publishedDate)).fromNow()
-              text: entry.contentSnippet
               bookmarkCount: bookmarkCount
             $container.append itemTemplate item
             cb null
