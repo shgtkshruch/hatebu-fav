@@ -114,3 +114,5 @@ new steady
       feed = new google.feeds.Feed api
       getFeed feed
       done()
+
+require('./tutorial.coffee')()

@@ -12,6 +12,7 @@ html(lang="ja")
     // build:css styles/vendor.css
     // bower:css
     link(rel='stylesheet', href='../bower_components/normalize-css/normalize.css')
+    link(rel='stylesheet', href='../node_modules/tether-shepherd/dist/css/shepherd-theme-arrows.css')
     // endbower
     // endbuild
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:100, 400')
@@ -23,6 +24,7 @@ html(lang="ja")
       form.header__form.form
         input#username.form__input(type="text" name="username" placeholder="ユーザー名")
         input#submit.form__submit(type="submit" value="決定")
+      .header__btn.btn#tutorialBtn 使い方を見る
     main.l-main
       #feed
     .l-comment#comment
