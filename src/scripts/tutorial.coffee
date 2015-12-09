@@ -19,7 +19,7 @@ module.exports = ->
 
       tour
         .addStep 'username',
-          text: ['はてなブックマークの', 'アカウント名を', '入力してください']
+          text: ['はてなブックマークの', 'アカウント名を', '入力してください。']
           attachTo: '#username top'
           buttons: [
             {
@@ -28,7 +28,7 @@ module.exports = ->
             }
           ]
         .addStep 'submit',
-          text: '決定ボタンを押してください'
+          text: '決定ボタンを押してください。'
           attachTo: '#submit top'
           buttons: [
             {
@@ -41,7 +41,7 @@ module.exports = ->
             }
           ]
         .addStep 'readArticle',
-          text: ['記事を読むには', 'ここをクリックしてください']
+          text: ['記事を読むには', 'ここをクリックしてください。']
           attachTo: '.item__link bottom'
           buttons: [
             {
@@ -54,7 +54,7 @@ module.exports = ->
             }
           ]
         .addStep 'readComment',
-          text: ['ブックマークコメントを読むには、', 'ここをクリックしてください']
+          text: ['ブックマークコメントを読むには、', 'ここをクリックしてください。']
           attachTo: '.js-bookmarkCount left'
           buttons: [
             {
