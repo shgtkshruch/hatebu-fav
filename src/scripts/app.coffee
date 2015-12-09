@@ -80,7 +80,7 @@ $container
     url = $(@).data 'url'
     offset = $(@).offset().top - 10
     $.ajax
-      url: 'http://b.hatena.ne.jp/entry/json/?url=' + url
+      url: 'http://b.hatena.ne.jp/entry/jsonlite/?url=' + url
       dataType: 'jsonp'
       success: (bookmarkEntries, status, xhr) ->
         $comment.empty()
