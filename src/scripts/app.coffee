@@ -36,7 +36,7 @@ getFeed = (feed) ->
   feed.setNumEntries 25
   feed.load (result) ->
     if result.error
-      $container.append 'フィードが取得できませんでした'
+      $container.append '<p class="item__noitem">フィードが取得できませんでした</p>'
       return
 
     async.each result.feed.entries, (entry, cb1) ->
@@ -104,7 +104,7 @@ $container
           $comment.css
             top: offset
           if $comment.children().length is 0
-            $comment.append 'コメントがありませんでした。'
+            $comment.append '<p class="comment__nocomment">コメントがありませんでした。</p>'
 
 new steady
   conditions:

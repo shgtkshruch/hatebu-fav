@@ -100,4 +100,9 @@ $height-count: 28px;
       color: $color-blue;
     }
   }
+  &__noitem {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
