@@ -35,32 +35,35 @@ getApi = (bookmarkNum) ->
 getFeed = (feed) ->
   feed.setNumEntries 25
   feed.load (result) ->
-    if !result.error
-      async.each result.feed.entries, (entry, cb1) ->
-        async.waterfall [
-          (cb) ->
-            $.ajax
-              url: 'http://api.b.st-hatena.com/entry.count?url=' + entry.link
-              dataType: 'jsonp'
-              success: (bookmarkCount, status, xhr) ->
-                cb null, bookmarkCount
-          , (bookmarkCount, cb) ->
-              item =
-                author: entry.author
-                authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
-                title: entry.title
-                link: entry.link
-                favicon: 'http://www.google.com/s2/favicons?domain=' + entry.link
-                time: moment(new Date(entry.publishedDate)).fromNow()
-                text: entry.contentSnippet
-                bookmarkCount: bookmarkCount
-              $container.append itemTemplate item
-              cb null
-        ], (err, results) ->
-          console.log err if err
-          cb1()
-      , (err) ->
+    if result.error
+      $container.append 'フィードが取得できませんでした'
+      return
+
+    async.each result.feed.entries, (entry, cb1) ->
+      async.waterfall [
+        (cb) ->
+          $.ajax
+            url: 'http://api.b.st-hatena.com/entry.count?url=' + entry.link
+            dataType: 'jsonp'
+            success: (bookmarkCount, status, xhr) ->
+              cb null, bookmarkCount
+        , (bookmarkCount, cb) ->
+            item =
+              author: entry.author
+              authorImg: 'http://cdn1.www.st-hatena.com/users/st/' + entry.author + '/profile.gif'
+              title: entry.title
+              link: entry.link
+              favicon: 'http://www.google.com/s2/favicons?domain=' + entry.link
+              time: moment(new Date(entry.publishedDate)).fromNow()
+              text: entry.contentSnippet
+              bookmarkCount: bookmarkCount
+            $container.append itemTemplate item
+            cb null
+      ], (err, results) ->
         console.log err if err
+        cb1()
+    , (err) ->
+      console.log err if err
 
 $ '#submit'
   .click (e) ->
