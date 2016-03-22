@@ -11,7 +11,7 @@ fmt = require 'cssfmt'
 del = require 'del'
 browserify = require 'browserify'
 source = require 'vinyl-source-stream'
-coffeeify = require 'coffeeify'
+babelify = require 'babelify'
 ghpages = require 'gh-pages'
 path = require 'path'
 
@@ -80,9 +80,9 @@ gulp.task 'sass', ->
     .pipe browserSync.reload
       stream: true
 
-gulp.task 'coffee', ->
-  browserify config.src + '/scripts/app.coffee', {debug: true}
-    .transform coffeeify
+gulp.task 'javascript', ->
+  browserify config.src + '/scripts/app.js', {debug: true}
+    .transform babelify
     .bundle()
     .on 'error', (err) ->
       console.log 'Error : ' + err.message
@@ -105,13 +105,13 @@ gulp.task 'clean', ->
 gulp.task 'publish', ->
   ghpages.publish path.join __dirname, config.dest
 
-gulp.task 'default', ['jade', 'sass', 'coffee', 'image', 'browser-sync'], ->
+gulp.task 'default', ['jade', 'sass', 'javascript', 'image', 'browser-sync'], ->
   gulp.watch config.src + '/**/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
-  gulp.watch config.src + '/scripts/*.coffee', ['coffee']
+  gulp.watch config.src + '/scripts/*.js', ['javascript']
   gulp.watch config.src + '/images/*', ['image']
 
-gulp.task 'prebuild', ['html', 'sass', 'coffee', 'image']
+gulp.task 'prebuild', ['html', 'sass', 'javascript', 'image']
 
 gulp.task 'build', ['prebuild'], ->
   gulp.start 'clean'
